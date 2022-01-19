@@ -8,9 +8,11 @@ const Persons = ({persons , deletPerson, personChange }) => {
         <div>
         {persons.map(person => (
             <Person 
-            person ={person} 
+            key ={person.id} 
+            fullname ={person.fullname} 
+            age ={person.age} 
             deletPerson={() => deletPerson(person.id)}
-            personChange = {(event) =>(event, person.id)}
+            changed = {event =>personChange(event, person.id)}
 
 
             />
