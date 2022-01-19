@@ -29,12 +29,7 @@ class App extends Component {
 
         persons[personIndex] = person;
         this.setState({persons});
-
-
-
-    }
-
-    
+        }    
     render(){
         const {persons, showDiv} = this.state;
         let person = null;
