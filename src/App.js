@@ -10,26 +10,37 @@ class App extends Component {
             {id : 3, fullname : "reza taji",  age : 41}
         ], showDiv : false
     }
-    handel = () => {
-        this.setState({showDiv : !this.state.showDiv});
-        
-    }   
+    handel =() =>{
+        this.setState({showDiv :  !this.state.showDiv})
+    }
+
     deletPerson = id =>{
         const persons = [...this.state.persons];
         const filterPerson = persons.filter(person => (person.id !== id));
         this.setState({persons : filterPerson});
     } 
-    handelNameChange = (event, id)=>{
-        const Person
+    changeHandle =(event , id) => {
+        const {persons : allPersons} = this.state;
+        const personIndex = allPersons.findIndex(p => p.id ===id);
+        const person = allPersons.personIndex;
+        person.fullname= event.target.value;
+        console.log(event);
+
+        const persons = [...allPersons];
+
+        persons[personIndex] = person;
+        this.setState({persons : persons});
+
+
 
     }
 
     
     render(){
         const {persons, showDiv} = this.state;
-        let person =null;
+        let person = null;
         if(showDiv){
-            person = <Persons persons={persons}  deletPerson={this.deletPerson} />
+            person = <Persons persons={persons}  deletPerson={this.deletPerson} personChange={this.changeHandle} />
 
 
         }
@@ -42,10 +53,11 @@ class App extends Component {
         return(
             <div>
                 <h2>persons managment</h2>
-                <h3>there is {persons.length} persons</h3>
+                {/* <h3>there is {persons.length} persons</h3> */}
                 {person}
             <button onClick={this.handel} style={buttonstyle}> click on me</button>
             <button onClick={this.deletPerson} style={buttonstyle}> delet</button>
+            
             
             </div>
             );
