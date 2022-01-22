@@ -1,5 +1,4 @@
 import React from 'react';
-import  "./person.css";
 
 const Person = ({key, fullname,deletPerson, changed }) => {
 
