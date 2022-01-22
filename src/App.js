@@ -9,7 +9,7 @@ class App extends Component {
             // {id : 2, fullname : "leila shahkarami",  age : 43},
             // {id : 3, fullname : "reza taji",  age : 41}
         ],
-        person: {fulname : "", age : ""},
+        person: {fullname: "" , age:0},
          showDiv : true
     }
     handel =() =>{
@@ -39,7 +39,7 @@ class App extends Component {
             fullname : this.state.person,
         };
         persons.push(person);
-        this.setState({persons : persons , person : ""});       
+        this.setState({persons, person:{fullname:""}});       
         
     } 
     setPerson = (event)=>{
@@ -64,14 +64,12 @@ class App extends Component {
             <h2>persons managment</h2>
             <h3>there is {persons.length} persons</h3>
             <div>
-            <input type="text" placeholder='make a new person' onChange={this.setPerson}></input>
+            <input type="text" placeholder='make a new person' onChange={this.setPerson} value={this.state.person.fullname}></input>
             <button onClick={this.handelNewPerson}>Add</button>
             </div>
             
-            <button onClick={this.handel} style={buttonstyle}> click on me</button>
-            <button onClick={this.deletPerson} style={buttonstyle}> delet</button>
+            <button onClick={this.handel} className='btn btn-lg btn-success fa fa-plus'> </button>
             {person}
-            
             
             </div>
             );
