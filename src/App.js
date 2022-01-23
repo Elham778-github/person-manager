@@ -84,7 +84,7 @@ class App extends Component {
 
         <Alert variant="light" >
         there is
-          <Badge className={`` pill ${badgeStyle.join(" ")}`}>
+          <Badge className={`pill ${badgeStyle.join(" ")}`}>
             {persons.length}
           </Badge>{" "}
           persons{" "}
