@@ -35,18 +35,31 @@ class App extends Component {
   handelNewPerson = () => {
     const persons = [...this.state.persons];
     const person = {
-      id: Math.floor(Math.random() * 1000),
+      id: persons.length,
       fullname: this.state.person,
     };
-    persons.push(person);
-    this.setState({ persons, person: { fullname: "" } });
+    if(person.fullname.length > 1 && person.fullname !== " "){
+
+      persons.push(person);
+      this.setState({ persons, person: { fullname: "" } });
+    }
+    
   };
   setPerson = (event) => {
     this.setState({ person: event.target.value });
   };
+
+
+
   render() {
     const { persons, showDiv } = this.state;
     let person = null;
+
+  let badgeStyle = [];
+  if(persons.length >=3)badgeStyle.push("bg-success");
+  if(persons.length <=2)badgeStyle.push("bg-warning");
+  if(persons.length <=1)badgeStyle.push("bg-danger");
+  
     if (showDiv) {
       person = (
         <Persons
@@ -55,6 +68,7 @@ class App extends Component {
           personChange={this.handelNameChange}
         />
       );
+
     }
     const buttonstyle = {
       padding: "8px",
@@ -62,15 +76,41 @@ class App extends Component {
     };
 
     return (
-      <div>
-        <h2>persons managment</h2>
-        <h3>there is {persons.length} persons</h3>
-        <div>
-          <input type="text" placeholder="make a new person" onChange={this.setPerson} value={this.state.person.fullname}/>
-          <button onClick={this.handelNewPerson}>Add</button>
+      <div className=" container-fluid text-center">
+        <div className="alert alert-info">
+          <h2>persons managment</h2>
+        </div>
+        <h3 className="">
+          there is
+          <span className={`badge badge-pill ${badgeStyle.join(" ")}`}>
+            {persons.length}
+          </span>{" "}
+          persons{" "}
+        </h3>
+        <div className="m-2 p-2" > 
+          <form className="form-inline justify-content-center" onSubmit={event=>event.preventDefault()}>
+            <div className=" input-group w-25 mx-auto">
+              <input
+                type="text"
+                placeholder="give a person"
+                onChange={this.setPerson}
+                value={this.state.person.fullname}
+                className="form-control"
+              />
+              <div className="input-group-prepend ">
+                <button type="submit"
+                  onClick={this.handelNewPerson}
+                  className="btn btn-lg btn-success fa fa-plus"
+                />
+              </div>
+            </div>
+          </form>
         </div>
 
-        <button onClick={this.handel} className="btn btn-lg btn-success fa fa-plus" />
+        <button id="show-pwerson " onClick={this.handel} className={showDiv ? 'btn btn-info' : 'btn btn-danger'}>
+          {" "}
+          show persons
+        </button>
         {person}
       </div>
     );
