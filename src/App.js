@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import{Alert, Button,Badge } from "react-bootstrap";
 
 import Persons from "./components/person/Persons";
 
@@ -77,16 +78,18 @@ class App extends Component {
 
     return (
       <div className=" container-fluid text-center">
-        <div className="alert alert-info">
+        <Alert variant="info">
           <h2>persons managment</h2>
-        </div>
-        <h3 className="">
-          there is
-          <span className={`badge badge-pill ${badgeStyle.join(" ")}`}>
+        </Alert>
+
+        <Alert variant="light" >
+        there is
+          <Badge className={`` pill ${badgeStyle.join(" ")}`}>
             {persons.length}
-          </span>{" "}
+          </Badge>{" "}
           persons{" "}
-        </h3>
+        </Alert>
+      
         <div className="m-2 p-2" > 
           <form className="form-inline justify-content-center" onSubmit={event=>event.preventDefault()}>
             <div className=" input-group w-25 mx-auto">
@@ -98,19 +101,21 @@ class App extends Component {
                 className="form-control"
               />
               <div className="input-group-prepend ">
-                <button type="submit"
+                <Button type="submit"
+                size="md"
                   onClick={this.handelNewPerson}
-                  className="btn btn-lg btn-success fa fa-plus"
+                  className=" fa fa-plus"
+                  variant="success"
                 />
               </div>
             </div>
           </form>
         </div>
 
-        <button id="show-pwerson " onClick={this.handel} className={showDiv ? 'btn btn-info' : 'btn btn-danger'}>
+        <Button id="show-pwerson " onClick={this.handel} variant={showDiv ? 'info' : 'danger'}>
           {" "}
           show persons
-        </button>
+        </Button>
         {person}
       </div>
     );
