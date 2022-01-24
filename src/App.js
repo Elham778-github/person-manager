@@ -20,8 +20,12 @@ class App extends Component {
 
   deletPerson = (id) => {
     const persons = [...this.state.persons];
+    const findIndex = persons.findIndex((p) => p.id == id);
+    const person = persons[findIndex];
+
     const filterPerson = persons.filter((person) => person.id !== id);
     this.setState({ persons: filterPerson });
+    toast.error(`${person.fullname} is successfull deleted`)
   };
   handelNameChange = (event, id) => {
     const { persons: allPersons } = this.state;

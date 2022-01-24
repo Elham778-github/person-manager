@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Toast } from 'react-toastify';
+
 const Person = ({ key, fullname, deletPerson, changed }) => {
 
     return (
