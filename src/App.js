@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Persons from "./components/person/Persons";
 import Header from "./components/common/Header";
 import SimpleContext from "./contex/simpleContex";
+import NewPerson from './components/common/NewPerson';
+
 
 
 
@@ -92,30 +94,9 @@ class App extends Component {
       }}>
         <div className=" container-fluid text-center">
           {/* <Alert > was here */}
-          <Header personsLengt={persons.length} appTitle={this.state.appTitle} />
+          <Header />
 
-          <div className="m-2 p-2" >
-            <form className="form-inline justify-content-center" onSubmit={event => event.preventDefault()}>
-              <div className=" input-group w-25 mx-auto">
-                <input
-                  type="text"
-                  placeholder="give a person"
-                  onChange={this.setPerson}
-                  value={this.state.person.fullname}
-                  className="form-control"
-                />
-                <div className="input-group-prepend ">
-                  <Button type="submit"
-                    size="md"
-                    onClick={this.handelNewPerson}
-                    className=" fa fa-plus"
-                    variant="success"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-
+          <NewPerson />
           <Button id="show-pwerson " onClick={this.handel} variant={showDiv ? 'info' : 'danger'}>
             {" "}
             show persons

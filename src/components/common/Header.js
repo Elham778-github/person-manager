@@ -1,7 +1,6 @@
 import React from "react";
 import { Badge, Alert } from "react-bootstrap";
 import SimpleContext from "../../contex/simpleContex";
-import Persons from '../person/Persons';
 
 
 const Header = ({ personsLengt}) => {
