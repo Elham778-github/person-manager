@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Persons from "./components/person/Persons";
 import Header from "./components/common/Header";
 import SimpleContext from "./contex/simpleContex";
-import NewPerson from './components/common/NewPerson';
+import NewPerson from './components/person/NewPerson';
 
 
 
