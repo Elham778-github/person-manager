@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import{Alert, Button,Badge } from "react-bootstrap";
+import {ToastContainer, toast} from "react-toastify";
 
 import Persons from "./components/person/Persons";
 
@@ -56,10 +57,10 @@ class App extends Component {
     const { persons, showDiv } = this.state;
     let person = null;
 
-  let badgeStyle = []
-  if(persons.length >=3)badgeStyle.push("bg-success");
-  if(persons.length <=2)badgeStyle.push("bg-warning");
-  if(persons.length <=1)badgeStyle.push("bg-danger");
+  let badgeStyle = "";
+  if(persons.length >=3)badgeStyle="bg-success";
+  if(persons.length <=2)badgeStyle="bg-warning";
+  if(persons.length <=1)badgeStyle="bg-danger";
   
     if (showDiv) {
       person = (
@@ -84,7 +85,7 @@ class App extends Component {
 
         <Alert variant="light" >
         there is
-          <Badge pill className={`${badgeStyle.join(" ")}`}>
+          <Badge pill className={badgeStyle}>
             {persons.length}
           </Badge>persons
         </Alert>
@@ -116,6 +117,7 @@ class App extends Component {
           show persons
         </Button>
         {person}
+        <ToastContainer />
       </div>
     );
   }
