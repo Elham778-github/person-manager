@@ -56,7 +56,7 @@ class App extends Component {
     const { persons, showDiv } = this.state;
     let person = null;
 
-  let badgeStyle = [];
+  let badgeStyle = []
   if(persons.length >=3)badgeStyle.push("bg-success");
   if(persons.length <=2)badgeStyle.push("bg-warning");
   if(persons.length <=1)badgeStyle.push("bg-danger");
@@ -84,10 +84,9 @@ class App extends Component {
 
         <Alert variant="light" >
         there is
-          <Badge className={`pill ${badgeStyle.join(" ")}`}>
+          <Badge pill className={`${badgeStyle.join(" ")}`}>
             {persons.length}
-          </Badge>{" "}
-          persons{" "}
+          </Badge>persons
         </Alert>
       
         <div className="m-2 p-2" > 
