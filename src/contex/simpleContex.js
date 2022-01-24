@@ -4,7 +4,8 @@ const SimpleContext= createContext({
     state :{} ,
     deletPerson : () =>{},
     handelNameChange : ()=>{},
-    setPerson : ()=>{}
+    setPerson : ()=>{},
+    handelNewPerson: () =>{}
 
 
 })

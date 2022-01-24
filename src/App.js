@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import{ Button} from "react-bootstrap";
-import {ToastContainer, toast} from "react-toastify";
+import { Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
 
 import Persons from "./components/person/Persons";
 import Header from "./components/common/Header";
+import SimpleContext from "./contex/simpleContex";
+
 
 
 class App extends Component {
   state = {
-    persons: [
-      // {id : 1, fullname : "lida rouzban", age : 40},
-      // {id : 2, fullname : "leila shahkarami",  age : 43},
-      // {id : 3, fullname : "reza taji",  age : 41}
-    ],
+    persons: [],
     person: { fullname: "", age: 0 },
     showDiv: true,
+    appTitle: " Person Manager"
   };
   handel = () => {
     this.setState({ showDiv: !this.state.showDiv });
@@ -46,7 +45,7 @@ class App extends Component {
       id: persons.length,
       fullname: this.state.person,
     };
-    if(person.fullname.length > 1 && person.fullname !== " "){
+    if (person.fullname.length > 1 && person.fullname !== " ") {
 
       persons.push(person);
       this.setState({ persons, person: { fullname: "" } });
@@ -56,7 +55,7 @@ class App extends Component {
         closeOnClick: true
       })
     }
-    
+
   };
   setPerson = (event) => {
     this.setState({ person: event.target.value });
@@ -67,7 +66,7 @@ class App extends Component {
   render() {
     const { persons, showDiv } = this.state;
     let person = null;
-  
+
     if (showDiv) {
       person = (
         <Persons
@@ -84,39 +83,47 @@ class App extends Component {
     };
 
     return (
-      <div className=" container-fluid text-center">
-      {/* <Alert > was here */}
-      <Header personsLengt={persons.length} appTitle={this.props.title} />
-      
-        <div className="m-2 p-2" > 
-          <form className="form-inline justify-content-center" onSubmit={event=>event.preventDefault()}>
-            <div className=" input-group w-25 mx-auto">
-              <input
-                type="text"
-                placeholder="give a person"
-                onChange={this.setPerson}
-                value={this.state.person.fullname}
-                className="form-control"
-              />
-              <div className="input-group-prepend ">
-                <Button type="submit"
-                size="md"
-                  onClick={this.handelNewPerson}
-                  className=" fa fa-plus"
-                  variant="success"
-                />
-              </div>
-            </div>
-          </form>
-        </div>
+      <SimpleContext.Provider value={{
+        state: this.state,
+        handelNameChange: this.handelNameChange,
+        deletPerson: this.deletPerson,
+        setPerson: this.setPerson,
+        handelNewPerson: this.handelNewPerson
+      }}>
+        <div className=" container-fluid text-center">
+          {/* <Alert > was here */}
+          <Header personsLengt={persons.length} appTitle={this.state.appTitle} />
 
-        <Button id="show-pwerson " onClick={this.handel} variant={showDiv ? 'info' : 'danger'}>
-          {" "}
-          show persons
-        </Button>
-        {person}
-        <ToastContainer />
-      </div>
+          <div className="m-2 p-2" >
+            <form className="form-inline justify-content-center" onSubmit={event => event.preventDefault()}>
+              <div className=" input-group w-25 mx-auto">
+                <input
+                  type="text"
+                  placeholder="give a person"
+                  onChange={this.setPerson}
+                  value={this.state.person.fullname}
+                  className="form-control"
+                />
+                <div className="input-group-prepend ">
+                  <Button type="submit"
+                    size="md"
+                    onClick={this.handelNewPerson}
+                    className=" fa fa-plus"
+                    variant="success"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <Button id="show-pwerson " onClick={this.handel} variant={showDiv ? 'info' : 'danger'}>
+            {" "}
+            show persons
+          </Button>
+          {person}
+          <ToastContainer />
+        </div>
+      </SimpleContext.Provider>
     );
   }
 }
