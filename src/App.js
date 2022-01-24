@@ -44,6 +44,11 @@ class App extends Component {
 
       persons.push(person);
       this.setState({ persons, person: { fullname: "" } });
+      toast.success("person added successful", {
+        position: "bottom-right",
+        closeButton: true,
+        closeOnClick: true
+      })
     }
     
   };
