@@ -2,7 +2,7 @@ import React from "react";
 import { Badge, Alert } from "react-bootstrap";
 
 
-const Header  = ({personsLengt}) => {
+const Header  = ({personsLengt, appTitle}) => {
     let badgeStyle = "";
     if(personsLengt >=3)badgeStyle="bg-success";
     if(personsLengt <=2)badgeStyle="bg-warning";
@@ -13,7 +13,7 @@ const Header  = ({personsLengt}) => {
         
         <div>
         <Alert variant="info">
-          <h2>persons managment</h2>
+          <h2>{appTitle}</h2>
         </Alert>
 
         <Alert variant="light" >
