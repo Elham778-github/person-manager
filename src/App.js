@@ -86,7 +86,7 @@ class App extends Component {
     return (
       <div className=" container-fluid text-center">
       {/* <Alert > was here */}
-      <Header personsLengt={persons.length} />
+      <Header personsLengt={persons.length} appTitle={this.props.title} />
       
         <div className="m-2 p-2" > 
           <form className="form-inline justify-content-center" onSubmit={event=>event.preventDefault()}>
