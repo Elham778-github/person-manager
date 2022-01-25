@@ -1,11 +1,11 @@
-import React, {createContext}from 'react';
+import  {createContext}from 'react';
 
 const SimpleContext= createContext({
     state :{} ,
     deletPerson : () =>{},
     handelNameChange : ()=>{},
     setPerson : ()=>{},
-    handelNewPerson: () =>{}
+    handelNewPerson: () => {}
 
 
 })
