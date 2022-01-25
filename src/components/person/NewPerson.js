@@ -3,13 +3,15 @@ import React from 'react';
 import SimpleContext from '../../contex/simpleContex';
 import { Button } from 'react-bootstrap';
 import { context } from 'react-bootstrap/esm/AccordionContext';
+import { useContext } from 'react';
 
 
 const NewPerson = ({   }) => {
+    const context =useContext(SimpleContext);
 
     return (
-        <SimpleContext.Consumer  >
-            {context => (
+        // <SimpleContext.Consumer  >
+        //     {context => (
                 <div>
                     <div className="m-2 p-2" >
                         <form className="form-inline justify-content-center" 
@@ -36,8 +38,8 @@ const NewPerson = ({   }) => {
                 </div>
 
 
-            )}
-        </SimpleContext.Consumer>
+        //     )}
+        // </SimpleContext.Consumer>
 
     );
 }
