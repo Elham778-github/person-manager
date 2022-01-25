@@ -1,35 +1,39 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Badge, Alert } from "react-bootstrap";
 import SimpleContext from "../../contex/simpleContex";
+import Persons from '../person/Persons';
 
 
-const Header = ({ personsLengt}) => {
+const Header = ({personsLengt}) => {
+  const context=useContext(SimpleContext);
+  const {persons, appTitle} = context.state;
+
   let badgeStyle = "";
-  if (personsLengt >= 3) badgeStyle = "bg-success";
-  if (personsLengt <= 2) badgeStyle = "bg-warning";
-  if (personsLengt <= 1) badgeStyle = "bg-danger";
+  if (persons.length >= 3) badgeStyle = "bg-success";
+  if (persons.length <= 2) badgeStyle = "bg-warning";
+  if (persons.length <= 1) badgeStyle = "bg-danger";
 
 
   return (
-    <SimpleContext.Consumer  >
-      {context =>(
+    // <SimpleContext.Consumer  >
+      // {context =>(
               <div>
               <Alert variant="info">
-                <h2>{context.state.appTitle}</h2>
+                <h2>{appTitle}</h2>
               </Alert>
       
               <Alert variant="light" >
                 there is
                 <Badge pill className={badgeStyle}>
-                  {context.state.persons.length}
+                  {persons.length}
                 </Badge>persons
               </Alert>
       
             </div>
       
         
-      )}
-    </SimpleContext.Consumer>
+      // )}
+    // </SimpleContext.Consumer>
 
   );
 }
