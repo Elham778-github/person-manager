@@ -17,6 +17,7 @@ class App extends Component {
     showDiv: true,
     appTitle: " Person Manager"
   };
+  static contextType= SimpleContext;
   handel = () => {
     this.setState({ showDiv: !this.state.showDiv });
   };
@@ -85,6 +86,7 @@ class App extends Component {
     };
 
     return (
+
       <SimpleContext.Provider value={{
         state: this.state,
         handelNameChange: this.handelNameChange,
