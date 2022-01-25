@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Persons from "./components/person/Persons";
 import Header from "./components/common/Header";
 import SimpleContext from "./contex/simpleContex";
-import NewPerson from './components/person/NewPerson';
+import NewPerson from "./components/person/NewPerson";
 
 
 
@@ -72,9 +72,9 @@ class App extends Component {
     if (showDiv) {
       person = (
         <Persons
-          persons={persons}
-          deletPerson={this.deletPerson}
-          personChange={this.handelNameChange}
+          // persons={persons}
+          // deletPerson={this.deletPerson}
+          // personChange={this.handelNameChange}
         />
       );
 
@@ -94,7 +94,7 @@ class App extends Component {
       }}>
         <div className=" container-fluid text-center">
           {/* <Alert > was here */}
-          <Header />
+          <Header personsLengt={persons.length}/>
 
           <NewPerson />
           <Button id="show-pwerson " onClick={this.handel} variant={showDiv ? 'info' : 'danger'}>
