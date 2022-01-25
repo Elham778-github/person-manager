@@ -1,9 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 
 import SimpleContext from '../../contex/simpleContex';
 import { Button } from 'react-bootstrap';
 import { context } from 'react-bootstrap/esm/AccordionContext';
-import { useContext } from 'react';
 
 
 const NewPerson = ({   }) => {
@@ -21,7 +20,7 @@ const NewPerson = ({   }) => {
                                     type="text"
                                     placeholder="give a person"
                                     onChange={context.setPerson}
-                                    value={context.state.person.fullname}
+                                    value={context.person.fullname}
                                     className="form-control"
                                 />
                                 <div className="input-group-prepend ">

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -10,29 +10,33 @@ import NewPerson from "./components/person/NewPerson";
 
 
 
-class App extends Component {
-  state = {
-    persons: [],
-    person: { fullname: "", age: 0 },
-    showDiv: true,
-    appTitle: " Person Manager"
-  };
-  static contextType= SimpleContext;
-  handel = () => {
-    this.setState({ showDiv: !this.state.showDiv });
+const App = () => {
+  // state = {
+  //   persons: [],
+  //   person: { fullname: "", age: 0 },
+  //   showDiv: true,
+  //   appTitle: " Person Manager"
+  // };
+
+  const [getPersons, setPersons] = useState([] );
+  const [getSinglePerson, setSinglePerson] = useState({ fullname: "" } );
+  const [getShowDiv, setShowDiv] = useState(true );
+
+  const handel = () => {
+    setShowDiv( !getShowDiv );
   };
 
-  deletPerson = (id) => {
-    const persons = [...this.state.persons];
+  const deletPerson = (id) => {
+    const persons = [...getPersons];
     const findIndex = persons.findIndex((p) => p.id == id);
     const person = persons[findIndex];
 
     const filterPerson = persons.filter((person) => person.id !== id);
-    this.setState({ persons: filterPerson });
+    setPersons( filterPerson );
     toast.error(`${person.fullname} is successfull deleted`)
   };
-  handelNameChange = (event, id) => {
-    const { persons: allPersons } = this.state;
+  const handelNameChange = (event, id) => {
+    const { persons: allPersons } =getPersons;
     const personIndex = allPersons.findIndex((p) => p.id == id);
     const person = allPersons[personIndex];
     person.fullname = event.target.value;
@@ -40,18 +44,19 @@ class App extends Component {
     const persons = [...allPersons];
 
     persons[personIndex] = person;
-    this.setState({ persons });
+    setPersons( persons );
   };
-  handelNewPerson = () => {
-    const persons = [...this.state.persons];
+  const handelNewPerson = () => {
+    const persons = [...getPersons];
     const person = {
       id: persons.length,
-      fullname: this.state.person,
+      fullname: getSinglePerson,
     };
     if (person.fullname.length > 1 && person.fullname !== " ") {
 
       persons.push(person);
-      this.setState({ persons, person: { fullname: "" } });
+      setPersons( persons );
+      setSinglePerson ({ fullname: "" });
       toast.success("person added successful", {
         position: "bottom-right",
         closeButton: true,
@@ -60,55 +65,52 @@ class App extends Component {
     }
 
   };
-  setPerson = (event) => {
-    this.setState({ person: event.target.value });
+  const setPerson = (event) => {
+    setSinglePerson( event.target.value );
   };
 
 
 
-  render() {
-    const { persons, showDiv } = this.state;
-    let person = null;
 
-    if (showDiv) {
-      person = (
-        <Persons
-          // persons={persons}
-          // deletPerson={this.deletPerson}
-          // personChange={this.handelNameChange}
-        />
-      );
+  let person = null;
 
-    }
-    const buttonstyle = {
-      padding: "8px",
-      backgroundColor: "pink",
-    };
-
-    return (
-
-      <SimpleContext.Provider value={{
-        state: this.state,
-        handelNameChange: this.handelNameChange,
-        deletPerson: this.deletPerson,
-        setPerson: this.setPerson,
-        handelNewPerson: this.handelNewPerson
-      }}>
-        <div className=" container-fluid text-center">
-          {/* <Alert > was here */}
-          <Header personsLengt={persons.length}/>
-
-          <NewPerson />
-          <Button id="show-pwerson " onClick={this.handel} variant={showDiv ? 'info' : 'danger'}>
-            {" "}
-            show persons
-          </Button>
-          {person}
-          <ToastContainer />
-        </div>
-      </SimpleContext.Provider>
+  if (getShowDiv) {
+    person = (
+      <Persons />
     );
+
   }
+  const buttonstyle = {
+    padding: "8px",
+    backgroundColor: "pink",
+  };
+
+  return (
+
+    <SimpleContext.Provider 
+    value={{
+      persons: getPersons,
+      handelNameChange: handelNameChange,
+      deletPerson: deletPerson,
+      setPerson: setPerson,
+      handelNewPerson: handelNewPerson,
+      person : getSinglePerson
+    }}>
+      <div className=" container-fluid text-center">
+        {/* <Alert > was here */}
+        <Header appTitle="personManager" personsLengt={getPersons.length} />
+
+        <NewPerson />
+        <Button id="show-pwerson " onClick={handel} variant={getShowDiv ? 'info' : 'danger'}>
+          {" "}
+          show persons
+        </Button>
+        {person}
+        <ToastContainer />
+      </div>
+    </SimpleContext.Provider>
+  );
+
 }
 
 export default App;

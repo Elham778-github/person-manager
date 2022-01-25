@@ -1,17 +1,18 @@
-import React from "react";
+import React,{useContext} from "react";
 import SimpleContext from "../../contex/simpleContex";
 
 
 import Person from "./Person";
 
 const Persons = () => {
+    const context = useContext(SimpleContext);
 
 
     return (
-        <SimpleContext.Consumer>
-            {context => (
+        // <SimpleContext.Consumer>
+        //     {context => (
                 <div>
-                    {context.state.persons.map(person => (
+                    {context.persons.map(person => (
                         <Person
                             key={person.id}
                             fullname={person.fullname}
@@ -25,8 +26,8 @@ const Persons = () => {
                 </div>
 
 
-            )}
-        </SimpleContext.Consumer>
+        //     )}
+        // </SimpleContext.Consumer>
 
 
     );

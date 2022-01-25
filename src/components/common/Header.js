@@ -4,9 +4,10 @@ import SimpleContext from "../../contex/simpleContex";
 import Persons from '../person/Persons';
 
 
-const Header = ({personsLengt}) => {
+const Header = ({ appTitle}) => {
   const context=useContext(SimpleContext);
-  const {persons, appTitle} = context.state;
+  
+  const {persons} = context;
 
   let badgeStyle = "";
   if (persons.length >= 3) badgeStyle = "bg-success";

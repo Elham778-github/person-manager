@@ -1,8 +1,9 @@
 import  {createContext}from 'react';
 
 const SimpleContext= createContext({
-    state :{} ,
+persons :[],
     deletPerson : () =>{},
+    person : "",
     handelNameChange : ()=>{},
     setPerson : ()=>{},
     handelNewPerson: () => {}
